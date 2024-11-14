@@ -1,5 +1,8 @@
-// Update with your config settings.
-require('dotenv').config();  // This loads the variables from .env into process.env
+require('dotenv').config();  // Loads environment variables from .env file
+
+// knexfile.js
+require('dotenv').config(); // Load .env file
+
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -7,47 +10,20 @@ require('dotenv').config();  // This loads the variables from .env into process.
 module.exports = {
 
   development: {
-    client: 'pg',
+    client: 'pg',  // PostgreSQL client
     connection: {
-      host: process.env.DB_HOST,          // Or your database host
-      user: process.env.DB_USERNAME,       // Replace with your database user
-      password: process.env.DB_PASSWORD, // Replace with your database password
-      database: process.env.DB_DATABASE,   // Replace with your database name
-      port: process.env.DB_PORT,                 // Default PostgreSQL port
+      host: process.env.DB_HOST,         // Database host
+      user: process.env.DB_USERNAME,      // Database username
+      password: process.env.DB_PASSWORD,     // Database password
+      database: process.env.DB_DATABASE, // Database name
+      port: process.env.DB_PORT || 5432,                // Default PostgreSQL port
     },
     migrations: {
-      directory: './migrations',  // Directory for migrations
+      directory: './migrations',  // Directory for migration files
     },
     seeds: {
-      directory: './seeds',       // Directory for seed files
+      directory: './seeds',  // Directory for seed files
     },
   },
-
-  // staging: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // },
-  // production: {
-  //   client: 'pg',
-  //   connection: process.env.DB_CONNECTION, // For production, typically set through environment variables
-  //   migrations: {
-  //     directory: './migrations',
-  //   },
-  //   seeds: {
-  //     directory: './seeds',
-  //   },
-  // },
-  
 
 };

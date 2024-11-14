@@ -1,7 +1,7 @@
 // models/userModel
 
-const { Model, ConstraintViolationError } = require('objection');
-
+const { Model } = require('objection');
+const knex = require('../knex'); 
 class User extends Model{
     static get tableName(){
         return 'users'
@@ -57,5 +57,5 @@ class User extends Model{
         }
     }
 }
-
+User.knex(knex);
 module.exports = User;
