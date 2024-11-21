@@ -1,19 +1,19 @@
-// services/UserService.js
+
 const UserRepository = require('../repositories/UserRepository');
+const UserService = {}
 
-class UserService {
-  static async register(userData) {
-    // You can add validation and password hashing here
-    return await UserRepository.create(userData);
-  }
-
-  static async getUserProfile(id) {
-    return await UserRepository.findById(id);
-  }
-
-  static async deleteUser(id) {
-    return await UserRepository.delete(id);
-  }
+UserService.register = async (userDate) =>{
+  return await UserRepository.create(userDate);
 }
+
+UserService.getUserProfile = async (id) =>{
+  return await UserRepository.findById(id);
+}
+
+UserService.deleteUser = async (id) =>{
+  return await UserRepository.deleteUser(id);
+}
+
+
 
 module.exports = UserService;
