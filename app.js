@@ -2,20 +2,24 @@ require('dotenv').config();
 // app.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const userRoutes = require('./routes/userRoutes.js');
+const routes = require('./routes');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use('/api', routes);
 
-// User routes
-app.use('/api/users', userRoutes);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Default error handling
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
 });
 
-// console.log(process.env.DB_HOST);
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
+});
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
