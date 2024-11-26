@@ -1,13 +1,19 @@
 require('dotenv').config();
 // app.js
 const express = require('express');
+const http = require('http');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const setupSocketIO = require('./socket/socket');
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(bodyParser.json());
 app.use('/api', routes);
+
+const io = setupSocketIO(server);
+
 
 // Default error handling
 app.use((err, req, res, next) => {
