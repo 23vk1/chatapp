@@ -1,4 +1,4 @@
-require('dotenv').config();  // Loads environment variables from .env file
+// require('dotenv').config();  // Loads environment variables from .env file
 
 // knexfile.js
 require('dotenv').config(); // Load .env file
